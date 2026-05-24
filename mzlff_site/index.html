@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MZLFF — Официальный сайт</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0e;
+            color: #eeeeee;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Фиксированная шапка */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #1a1a24;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 11, 14, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ff9f43;
+            cursor: pointer;
+        }
+
+        nav a {
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active-nav {
+            color: #ff9f43;
+        }
+
+        /* Секции страниц */
+        .page-section {
+            padding-top: 120px;
+            min-height: calc(100vh - 100px);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Главная страница */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .hero-info h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff9f43, #ff5252);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-info p {
+            font-size: 18px;
+            color: #a0a0aa;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: #ff9f43;
+            color: #0b0b0e;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid #2a2a35;
+        }
+
+        /* Заголовки */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ff9f43;
+            margin: 10px auto 0;
+        }
+
+        /* Сетки карточек */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .album-card {
+            background: #141419;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #1a1a24;
+            transition: transform 0.3s ease;
+        }
+
+        .album-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff9f43;
+        }
+
+        .album-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            background-color: #222;
+        }
+
+        /* Блок полезных ссылок */
+        .links-page-wrapper {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 16px;
+            padding: 60px 40px;
+            border: 1px solid #1a1a24;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 25, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 159, 67, 0.2);
+            font-weight: 600;
+        }
+
+        .link-card:hover {
+            background: #ff9f43;
+            color: #0b0b0e;
+            transform: scale(1.03);
+        }
+
+        .link-card span {
+            margin-right: 15px;
+            font-size: 12px;
+            background: rgba(255, 159, 67, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #60606a;
+            border-top: 1px solid #1a1a24;
+            margin-top: 40px;
+        }
+
+        .business-mail a {
+            color: #ff9f43;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-img { order: -1; max-width: 400px; margin: 0 auto; }
+            header .container { flex-direction: column; gap: 15px; }
+            .page-section { padding-top: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo" onclick="navigateTo('home')">MZLFF</div>
+            <nav>
+                <a id="nav-home" class="active-nav" href="javascript:void(0)" onclick="navigateTo('home')">Главная</a>
+                <a id="nav-releases" href="javascript:void(0)" onclick="navigateTo('releases')">Релизы</a>
+                <a id="nav-arts" href="javascript:void(0)" onclick="navigateTo('arts')">Арты</a>
+                <a id="nav-links" href="javascript:void(0)" onclick="navigateTo('links')">Ссылки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="page-home" class="page-section container">
+        <div class="hero-grid">
+            <div class="hero-info">
+                <h1>Илья Мазелов</h1>
+                <p>Российский стример, музыкант, рэпер и артист.</p>
+                <a href="https://www.twitch.tv/mazellovvv" target="_blank" class="btn-main">Смотреть стрим</a>
+            </div>
+            <div class="hero-img">
+                <img src="mzlff 1.png" alt="MZLFF">
+            </div>
+        </div>
+    </main>
+
+    <section id="page-releases" class="page-section container">
+        <h2 class="section-title">Официальные Релизы</h2>
+        <div class="gallery-grid">
+            <div class="album-card"><img src="i 1.png" alt="Сука"><h3>Сука</h3></div>
+            <div class="album-card"><img src="i 2.png" alt="fatasmagoria"><h3>fatasmagoria</h3></div>
+            <div class="album-card"><img src="i 3.png" alt="не забытое старое"><h3>не забытое старое</h3></div>
+            <div class="album-card"><img src="i 4.png" alt="светлая сторона"><h3>светлая сторона</h3></div>
+            <div class="album-card"><img src="i 5.png" alt="маяк вселенной"><h3>маяк вселенной</h3></div>
+            <div class="album-card"><img src="i 6.png" alt="Космоцветок"><h3>Космоцветок</h3></div>
+            <div class="album-card"><img src="i 7.png" alt="ничего плохого"><h3>ничего плохого</h3></div>
+            <div class="album-card"><img src="i 8.png" alt="потерянный мир"><h3>потерянный мир</h3></div>
+            <div class="album-card"><img src="i 9.png" alt="Айзек"><h3>Айзек</h3></div>
+            <div class="album-card"><img src="i 10.png" alt="главная тайна неба"><h3>главная тайна неба</h3></div>
+            <div class="album-card"><img src="i 11.png" alt="ADHD"><h3>ADHD</h3></div>
+            <div class="album-card"><img src="i 12.png" alt="холода ветра"><h3>холода ветра</h3></div>
+        </div>
+    </section>
+
+    <section id="page-arts" class="page-section container">
+        <h2 class="section-title">Галерея Артов</h2>
+        <div class="gallery-grid">
+            <div class="album-card"><img src="i 13.png" alt="Арт 1"><h3>Арт 1</h3></div>
+            <div class="album-card"><img src="i 14.png" alt="Арт 2"><h3>Арт 2</h3></div>
+            <div class="album-card"><img src="i 15.png" alt="Арт 3"><h3>Арт 3</h3></div>
+            <div class="album-card"><img src="i 16.png" alt="Арт 4"><h3>Арт 4</h3></div>
+            <div class="album-card"><img src="i 17.png" alt="Арт 5"><h3>Арт 5</h3></div>
+            <div class="album-card"><img src="i 18.png" alt="Арт 6"><h3>Арт 6</h3></div>
+            <div class="album-card"><img src="i 19.png" alt="Арт 7"><h3>Арт 7</h3></div>
+            <div class="album-card"><img src="i 20.png" alt="Арт 8"><h3>Арт 8</h3></div>
+            <div class="album-card"><img src="i 21.png" alt="Арт 9"><h3>Арт 9</h3></div>
+            <div class="album-card"><img src="i 22.png" alt="Арт 10"><h3>Арт 10</h3></div>
+        </div>
+    </section>
+
+    <section id="page-links" class="page-section container">
+        <div class="links-page-wrapper" style="background-image: linear-gradient(rgba(11, 11, 14, 0.85), rgba(11, 11, 14, 0.95)), url('мазеллов 1.png');">
+            <h2 class="section-title">Полезные ссылки</h2>
+            <div class="links-grid">
+                <a href="https://t.me/mazellovvv" target="_blank" class="link-card"><span>TG</span> Telegram</a>
+                <a href="https://www.twitch.tv/mazellovvv" target="_blank" class="link-card"><span>TWITCH</span> Twitch</a>
+                <a href="https://vk.com/mazilaweek" target="_blank" class="link-card"><span>VK</span> ВКонтакте</a>
+                <a href="https://donatex.gg/donate/mazellovvv" target="_blank" class="link-card"><span>DONATE</span> Donate</a>
+                <a href="https://vsrap.shop/mzlff" target="_blank" class="link-card"><span>MERCH</span> Мерч</a>
+                <a href="https://music.yandex.ru/artist/6236811" target="_blank" class="link-card"><span>YANDEX</span> Яндекс Музыка</a>
+                <a href="https://www.youtube.com/@MZLFF" target="_blank" class="link-card"><span>YOUTUBE</span> YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="business-mail">Business: <a href="mailto:mazellovvv@gca.holdings">mazellovvv@gca.holdings</a></div>
+            <p>&copy; 2026 MZLFF. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Железобетонное переключение вкладок напрямую через свойство style.display
+        function navigateTo(pageId) {
+            // Скрываем абсолютно все секции страниц
+            const pages = document.querySelectorAll('.page-section');
+            for (let i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+
+            // Убираем подсветку у всех ссылок в меню
+            const links = document.querySelectorAll('nav a');
+            for (let i = 0; i < links.length; i++) {
+                links[i].classList.remove('active-nav');
+            }
+
+            // Показываем только выбранную страницу и подсвечиваем её кнопку
+            document.getElementById('page-' + pageId).style.display = 'block';
+            document.getElementById('nav-' + pageId).classList.add('active-nav');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // При первой загрузке сайта принудительно открываем только Главную страницу
+        window.addEventListener('DOMContentLoaded', function() {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
+

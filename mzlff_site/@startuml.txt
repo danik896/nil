@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor "Пользователь" as User
+rectangle "Сайт MZLFF" {
+  usecase "Просмотр релизов" as UC1
+  usecase "Просмотр артов" as UC2
+  usecase "Переход по ссылкам" as UC3
+}
+User --> UC1
+User --> UC2
+User --> UC3
+@enduml
